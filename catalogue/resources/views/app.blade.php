@@ -35,6 +35,9 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/">Home</a></li>
 				</ul>
+				<ul class="nav navbar-nav">
+					<li><a href="/add">Add</a></li>
+				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::guest())

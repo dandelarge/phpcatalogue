@@ -15,8 +15,9 @@ Route::get('/', 'HomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('add', 'products@create');
-Route::match(['get','post'], 'store', 'products@store');
+Route::get('products', 'Products@index');
+Route::get('add', 'Products@create');
+Route::match(['get','post'], 'store', 'Products@store');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -7,16 +7,27 @@ use App\Http\Controllers\Controller;
 use Request;
 use Illuminate\Http\Response;
 
-class products extends Controller {
+class Products extends Controller {
 
 	/**
-	 * Display a listing of the resource.
+	 * Return a list of products as a RESTful Service so it can be consued as an API
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return response()->json(['response'=>'good to go']);
+		$prodList = $this->listProds();
+		return response()->json($prodList);
+	}
+
+	/**
+	 * Get the list of products as an object to handle 
+	 *
+	 * @return Products object
+	 */
+	public function listProds()
+	{
+		return Product::all();
 	}
 
 	/**
@@ -37,10 +48,11 @@ class products extends Controller {
 	public function store()
 	{
 		$info = Request::all();
-		$product = new Product();
+
+		$product = new Product;
 		$product->name = $info['name'];
 		$product->description = $info['description'];
-		$product->in_stock = $info['in_stock'];
+		$product->in_stock = !empty($info['in_stock']) ? '1':'0';
 		$product->save();
 
 		if(Request::isMethod('post')) {
